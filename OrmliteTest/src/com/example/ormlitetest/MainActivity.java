@@ -16,20 +16,20 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		System.out.println("-----------oncreate");
-		ChildDAOManager childDAOManager = ChildDAOManager.getInstance(this);
-		
+        MyDAOManager<Child> childManager = DaoManagerFactory.getChildManager(this);
+
 		Child child = new Child();
 		child.setAge(5);
 		child.setName("aaaaa");
 		try {
-			childDAOManager.add(child);
+            childManager.add(child);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
 			System.out.println("-----------c qurey");
-			List<Child> quaryAll = childDAOManager.quaryAll();
+			List<Child> quaryAll = childManager.quaryAll();
 			for (Child c : quaryAll) {
 				System.out.println("-----------c = " + c.getName() + "  " + c.getId());
 			}
